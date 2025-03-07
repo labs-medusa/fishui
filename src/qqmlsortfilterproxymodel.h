@@ -30,6 +30,8 @@
 #include <QSortFilterProxyModel>
 #include <QQmlExpression>
 
+#include <QRegularExpression>
+
 class QQmlSortFilterProxyModel : public QSortFilterProxyModel
 {
     Q_OBJECT
@@ -49,17 +51,14 @@ class QQmlSortFilterProxyModel : public QSortFilterProxyModel
     Q_PROPERTY(QQmlScriptString sortExpression READ sortExpression WRITE setSortExpression NOTIFY sortExpressionChanged)
 
 public:
-    enum PatternSyntax {
-        RegExp = QRegExp::RegExp,
-        Wildcard = QRegExp::Wildcard,
-        FixedString = QRegExp::FixedString,
-        RegExp2 = QRegExp::RegExp2,
-        WildcardUnix = QRegExp::WildcardUnix,
-        W3CXmlSchema11 = QRegExp::W3CXmlSchema11
+    enum PatternSyntax
+    {
+        RegularExpression = QRegularExpression::NoPatternOption,
+        CaseInsensitive = QRegularExpression::CaseInsensitiveOption
     };
     Q_ENUM(PatternSyntax)
 
-    QQmlSortFilterProxyModel(QObject *parent = 0);
+    explicit QQmlSortFilterProxyModel(QObject *parent = 0);
 
     int count() const;
 

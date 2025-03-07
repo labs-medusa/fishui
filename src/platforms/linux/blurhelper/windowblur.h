@@ -1,7 +1,7 @@
 /*
- * Copyright (C) 2021 CutefishOS Team.
+ * Copyright (C) 2021 LingmoOS Team.
  *
- * Author:     cutefish <cutefishos@foxmail.com>
+ * Author:     lingmo <lingmo@lingmo.org>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,8 +25,8 @@
 #include <QQmlEngine>
 #include <QQmlParserStatus>
 #include <QRect>
-#include <QWindow>
 #include <QVector>
+#include <QWindow>
 
 class WindowBlur : public QObject, public QQmlParserStatus
 {
@@ -36,6 +36,7 @@ class WindowBlur : public QObject, public QQmlParserStatus
     Q_PROPERTY(bool enabled READ enabled WRITE setEnabled NOTIFY enabledChanged)
     Q_PROPERTY(qreal windowRadius READ windowRadius WRITE setWindowRadius NOTIFY windowRadiusChanged)
     Q_INTERFACES(QQmlParserStatus)
+    QML_NAMED_ELEMENT(WindowBlur)
 
 public:
     WindowBlur(QObject *parent = nullptr) noexcept;

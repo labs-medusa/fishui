@@ -22,7 +22,6 @@
 
 #include <QObject>
 #include <QWindow>
-#include <xcb/xcb.h>
 
 class WindowHelper : public QObject
 {
@@ -47,7 +46,6 @@ private:
     void onCompositingChanged(bool enabled);
 
 private:
-    xcb_atom_t m_moveResizeAtom;
     bool m_compositing;
 };
 

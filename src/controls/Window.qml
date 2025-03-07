@@ -22,7 +22,7 @@ import QtQuick.Window 2.3
 import QtQuick.Controls 2.4
 import QtQuick.Layouts 1.3
 import QtQuick.Shapes 1.12
-import QtGraphicalEffects 1.0
+// import QtGraphicalEffects 1.0
 import FishUI 1.0 as FishUI
 
 Window {
@@ -33,7 +33,7 @@ Window {
     flags: Qt.FramelessWindowHint
     color: "transparent"
 
-    default property alias content : _content.data
+    default property alias content: _content.data
     property alias background: _background
     property alias header: _header
     property alias headerBackground: _headerBackground
@@ -58,8 +58,8 @@ Window {
 
     onHeaderItemChanged: {
         if (headerItem) {
-            headerItem.parent = _headerContent
-            headerItem.anchors.fill = _headerContent
+            headerItem.parent = _headerContent;
+            headerItem.anchors.fill = _headerContent;
         }
     }
 
@@ -83,9 +83,7 @@ Window {
         cursorShape: Qt.SizeBDiagCursor
         propagateComposedEvents: true
         preventStealing: false
-        visible: !isMaximized && !isFullScreen
-                              && control.widthResizable
-                              && control.heightResizable
+        visible: !isMaximized && !isFullScreen && control.widthResizable && control.heightResizable
         z: 999
 
         onPressed: mouse.accepted = false
@@ -94,8 +92,8 @@ Window {
             grabPermissions: TapHandler.TakeOverForbidden
             target: null
             onActiveChanged: if (active) {
-                                 windowHelper.startSystemResize(control, Qt.LeftEdge | Qt.BottomEdge)
-                             }
+                windowHelper.startSystemResize(control, Qt.LeftEdge | Qt.BottomEdge);
+            }
         }
     }
 
@@ -108,9 +106,7 @@ Window {
         cursorShape: Qt.SizeFDiagCursor
         propagateComposedEvents: true
         preventStealing: false
-        visible: !isMaximized && !isFullScreen
-                              && control.widthResizable
-                              && control.heightResizable
+        visible: !isMaximized && !isFullScreen && control.widthResizable && control.heightResizable
         z: 999
 
         onPressed: mouse.accepted = false
@@ -118,7 +114,9 @@ Window {
         DragHandler {
             grabPermissions: TapHandler.TakeOverForbidden
             target: null
-            onActiveChanged: if (active) { windowHelper.startSystemResize(control, Qt.RightEdge | Qt.BottomEdge) }
+            onActiveChanged: if (active) {
+                windowHelper.startSystemResize(control, Qt.RightEdge | Qt.BottomEdge);
+            }
         }
     }
 
@@ -139,7 +137,9 @@ Window {
         DragHandler {
             grabPermissions: TapHandler.TakeOverForbidden
             target: null
-            onActiveChanged: if (active) { windowHelper.startSystemResize(control, Qt.TopEdge) }
+            onActiveChanged: if (active) {
+                windowHelper.startSystemResize(control, Qt.TopEdge);
+            }
         }
     }
 
@@ -160,7 +160,9 @@ Window {
         DragHandler {
             grabPermissions: TapHandler.TakeOverForbidden
             target: null
-            onActiveChanged: if (active) { windowHelper.startSystemResize(control, Qt.BottomEdge) }
+            onActiveChanged: if (active) {
+                windowHelper.startSystemResize(control, Qt.BottomEdge);
+            }
         }
     }
 
@@ -181,7 +183,9 @@ Window {
         DragHandler {
             grabPermissions: TapHandler.TakeOverForbidden
             target: null
-            onActiveChanged: if (active) { windowHelper.startSystemResize(control, Qt.LeftEdge) }
+            onActiveChanged: if (active) {
+                windowHelper.startSystemResize(control, Qt.LeftEdge);
+            }
         }
     }
 
@@ -203,8 +207,8 @@ Window {
             grabPermissions: TapHandler.TakeOverForbidden
             target: null
             onActiveChanged: if (active) {
-                                 windowHelper.startSystemResize(control, Qt.RightEdge)
-                             }
+                windowHelper.startSystemResize(control, Qt.RightEdge);
+            }
         }
     }
 
@@ -229,9 +233,7 @@ Window {
     Rectangle {
         anchors.fill: parent
 
-        property var borderColor: compositing ? FishUI.Theme.darkMode ? Qt.rgba(255, 255, 255, 0.3)
-                                                                      : Qt.rgba(0, 0, 0, 0.2) : FishUI.Theme.darkMode ? Qt.rgba(255, 255, 255, 0.15)
-                                                                                                                      : Qt.rgba(0, 0, 0, 0.15)
+        property var borderColor: compositing ? FishUI.Theme.darkMode ? Qt.rgba(255, 255, 255, 0.3) : Qt.rgba(0, 0, 0, 0.2) : FishUI.Theme.darkMode ? Qt.rgba(255, 255, 255, 0.15) : Qt.rgba(0, 0, 0, 0.15)
         color: "transparent"
         radius: control.windowRadius
         border.color: borderColor
@@ -267,7 +269,8 @@ Window {
 
             TapHandler {
                 enabled: !control.isFullScreen
-                onTapped: if (tapCount === 2) toggleMaximized()
+                onTapped: if (tapCount === 2)
+                    toggleMaximized()
                 gesturePolicy: TapHandler.DragThreshold
             }
 
@@ -275,7 +278,9 @@ Window {
                 target: null
                 acceptedDevices: PointerDevice.GenericPointer
                 grabPermissions: PointerHandler.CanTakeOverFromItems | PointerHandler.CanTakeOverFromHandlersOfDifferentType | PointerHandler.ApprovesTakeOverByAnything
-                onActiveChanged: if (active) { windowHelper.startSystemMove(control) }
+                onActiveChanged: if (active) {
+                    windowHelper.startSystemMove(control);
+                }
             }
 
             RowLayout {
@@ -307,11 +312,9 @@ Window {
 
                     RoundImageButton {
                         size: _header.buttonSize
-                        source: "qrc:/fishui/kit/images/" +
-                            (FishUI.Theme.darkMode ? "dark/" : "light/") +
-                            (control.visibility === Window.Maximized ? "restore.svg" : "maximize.svg")
+                        source: "qrc:/fishui/kit/images/" + (FishUI.Theme.darkMode ? "dark/" : "light/") + (control.visibility === Window.Maximized ? "restore.svg" : "maximize.svg")
                         onClicked: control.toggleMaximized()
-                        visible: !control.isFullScreen &&  control.minimumWidth !== control.maximumWidth && control.maximumHeight !== control.minimumHeight
+                        visible: !control.isFullScreen && control.minimumWidth !== control.maximumWidth && control.maximumHeight !== control.minimumHeight
                         Layout.alignment: Qt.AlignTop
                         Layout.topMargin: _header.spacing
                         image.smooth: false
@@ -353,18 +356,18 @@ Window {
         }
 
         // Mask
-       layer.enabled: _background.radius > 0
-       layer.effect: OpacityMask {
-           maskSource: Item {
-               width: _contentItem.width
-               height: _contentItem.height
+        layer.enabled: _background.radius > 0
+        layer.effect: OpacityMask {
+            mask: Item {
+                width: _contentItem.width
+                height: _contentItem.height
 
-               Rectangle {
-                   anchors.fill: parent
-                   radius: _background.radius
-               }
-           }
-       }
+                Rectangle {
+                    anchors.fill: parent
+                    radius: _background.radius
+                }
+            }
+        }
     }
 
     QtObject {
@@ -374,11 +377,11 @@ Window {
 
     function showPassiveNotification(message, timeout, actionText, callBack) {
         if (!internal.passiveNotification) {
-            var component = Qt.createComponent("qrc:/fishui/kit/Toast.qml")
-            internal.passiveNotification = component.createObject(control)
+            var component = Qt.createComponent("qrc:/fishui/kit/Toast.qml");
+            internal.passiveNotification = component.createObject(control);
         }
 
-        internal.passiveNotification.showNotification(message, timeout, actionText, callBack)
+        internal.passiveNotification.showNotification(message, timeout, actionText, callBack);
     }
 
     function toggleMaximized() {
