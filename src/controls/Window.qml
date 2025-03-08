@@ -86,7 +86,9 @@ Window {
         visible: !isMaximized && !isFullScreen && control.widthResizable && control.heightResizable
         z: 999
 
-        onPressed: mouse.accepted = false
+        onPressed: mouse => {
+            mouse.accepted = false;
+        }
 
         DragHandler {
             grabPermissions: TapHandler.TakeOverForbidden
@@ -109,7 +111,9 @@ Window {
         visible: !isMaximized && !isFullScreen && control.widthResizable && control.heightResizable
         z: 999
 
-        onPressed: mouse.accepted = false
+        onPressed: mouse => {
+            mouse.accepted = false;
+        }
 
         DragHandler {
             grabPermissions: TapHandler.TakeOverForbidden
@@ -132,7 +136,9 @@ Window {
         cursorShape: Qt.SizeVerCursor
         z: 999
 
-        onPressed: mouse.accepted = false
+        onPressed: mouse => {
+            mouse.accepted = false;
+        }
 
         DragHandler {
             grabPermissions: TapHandler.TakeOverForbidden
@@ -155,7 +161,9 @@ Window {
         visible: !isMaximized && !isFullScreen && control.heightResizable
         z: 999
 
-        onPressed: mouse.accepted = false
+        onPressed: mouse => {
+            mouse.accepted = false;
+        }
 
         DragHandler {
             grabPermissions: TapHandler.TakeOverForbidden
@@ -178,7 +186,9 @@ Window {
         visible: !isMaximized && !isFullScreen && control.widthResizable
         z: 999
 
-        onPressed: mouse.accepted = false
+        onPressed: mouse => {
+            mouse.accepted = false;
+        }
 
         DragHandler {
             grabPermissions: TapHandler.TakeOverForbidden
@@ -201,10 +211,12 @@ Window {
         visible: !isMaximized && !isFullScreen && control.widthResizable
         z: 999
 
-        onPressed: mouse.accepted = false
+        onPressed: mouse => {
+            mouse.accepted = false;
+        }
 
         DragHandler {
-            grabPermissions: TapHandler.TakeOverForbidden
+            grabPermissions: PointerDevice.TakeOverForbidden
             target: null
             onActiveChanged: if (active) {
                 windowHelper.startSystemResize(control, Qt.RightEdge);
